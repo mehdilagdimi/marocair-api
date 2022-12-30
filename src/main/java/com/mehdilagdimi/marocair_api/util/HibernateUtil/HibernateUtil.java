@@ -1,6 +1,9 @@
 package com.mehdilagdimi.marocair_api.util.HibernateUtil;
 
-import com.mehdilagdimi.marocair_api.entity.*;
+import com.mehdilagdimi.marocair_api.model.entity.Client;
+import com.mehdilagdimi.marocair_api.model.entity.Flight;
+import com.mehdilagdimi.marocair_api.model.entity.Passenger;
+import com.mehdilagdimi.marocair_api.model.entity.Reservation;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -25,7 +25,6 @@ public class DaoExecuter<T> extends TransactionExecuter {
         typeStr = type.getSimpleName();
     }
     public void setType(Class<? extends T> type) {
-
         this.type = type;
         this.typeStr = this.type.getSimpleName();
     }
@@ -45,8 +44,8 @@ public class DaoExecuter<T> extends TransactionExecuter {
         return (T) executeTransaction(getExpression);
     }
 
-    public List<T> getAll(){
-        getListExpression = (s -> (List<T>) s.createQuery("SELECT m FROM "+ typeStr +" m", type).getResultList());
+    public List<T> getAll(Class<? extends T> type){
+        getListExpression = (s -> (List<T>) s.createQuery("SELECT m FROM "+ type.getSimpleName() +" m", type).getResultList());
         return (List<T>) executeTransaction(getListExpression);
     }
 
