@@ -3,11 +3,15 @@ package com.mehdilagdimi.marocair_api.dao;
 import com.mehdilagdimi.marocair_api.base.TransactionExecuterFI;
 import com.mehdilagdimi.marocair_api.base.TransactionGetExecuterFI;
 import com.mehdilagdimi.marocair_api.util.HibernateUtil.TransactionExecuter;
+
+import jakarta.enterprise.context.Dependent;
 import org.hibernate.Session;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DaoExecuter<T> extends TransactionExecuter {
+@Dependent
+public class DaoExecuter<T> extends TransactionExecuter implements Serializable {
     private Class<? extends T> type;
     String typeStr;
     String paramTypeStr;
@@ -34,12 +38,12 @@ public class DaoExecuter<T> extends TransactionExecuter {
         return (List<T>) executeTransaction(getListExpressionParam);
     }
 
-    public T get(int id){
+    public T get(int id, Class<? extends T> type){
         getExpression = (s -> s.get(type, id));
         return (T) executeTransaction(getExpression);
     }
 
-    public T find(int id){
+    public T find(int id, Class<? extends T> type){
         getExpression = (s -> s.find(type, id));
         return (T) executeTransaction(getExpression);
     }
